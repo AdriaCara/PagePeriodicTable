@@ -141,7 +141,7 @@ function generatePage(filterPhase, filterCategory) {
       
       // Crear un elemento <p> para la información del elemento
       const elementInfo = document.createElement("p");
-      elementInfo.textContent = "Example";
+      elementInfo.textContent = `Electron configuration: ${element.electron_configuration}`;
       elementInfo.classList.add("card-text");
 
       // Creamos un elemento <a> para enlaçar con la wiki del elemento
