@@ -3,9 +3,22 @@ const elementsSection = document.getElementById("elements");
 
 // URL de la API
 const apiUrl = "https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json";
+generatePage("All");
 
-// Hacer una llamada a la API utilizando fetch
-fetch(apiUrl)
+function activateFilterPhase(id) {
+  document.getElementById("All").classList.remove("active");
+  document.getElementById("Solid").classList.remove("active");
+  document.getElementById("Liquid").classList.remove("active");
+  document.getElementById("Gas").classList.remove("active");
+  document.getElementById(id).classList.add("active");
+
+  deleteElements();
+  generatePage(id);
+}
+
+function generatePage(filterPhase) {
+  // Hacer una llamada a la API utilizando fetch
+  fetch(apiUrl)
   .then((response) => response.json())
   .then((data) => {
     // Recorrer los elementos de la tabla periódica
@@ -53,7 +66,7 @@ fetch(apiUrl)
       const elementName = document.createElement("h2");
       elementName.textContent = `${element.number}.  ${element.symbol}`;
       elementName.classList.add("mt-2");
- 
+
       // Crear un elemento <img src="http:...
       const elementImage = document.createElement("img");
       elementImage.classList.add("card-img-top");
@@ -83,17 +96,27 @@ fetch(apiUrl)
 
 
       // Agregar los elementos <h2> y <p> al elemento <div>
-
       elementDiv.appendChild(elementName);
       elementDiv.appendChild(elementImage);
       elementDiv.appendChild(elementSymbol);
       elementDiv.appendChild(elementInfo);
       elementDiv.appendChild(elementWiki);
 
-      // Agregar el elemento <div> a la sección de elementos
-      elementsSection.appendChild(elementDiv);
+      if (element.phase == filterPhase || filterPhase == "All") {
+        console.log(filterPhase);
+        // Agregar el elemento <div> a la sección de elementos
+        elementsSection.appendChild(elementDiv);
+      }
     });
   })
   .catch((error) => {
     console.error("Error al obtener la información de los elementos:", error);
   });
+}
+
+function deleteElements(){
+  const parent = document.getElementById("elements")
+   while (parent.firstChild) {
+      parent.firstChild.remove()
+   }
+}
