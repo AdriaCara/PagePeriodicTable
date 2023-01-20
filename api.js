@@ -3,20 +3,78 @@ const elementsSection = document.getElementById("elements");
 
 // URL de la API
 const apiUrl = "https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json";
-generatePage("All");
+generatePage("All", "All");
 
 function activateFilterPhase(id) {
-  document.getElementById("All").classList.remove("active");
+  document.getElementById("AllPhase").classList.remove("active");
   document.getElementById("Solid").classList.remove("active");
   document.getElementById("Liquid").classList.remove("active");
   document.getElementById("Gas").classList.remove("active");
   document.getElementById(id).classList.add("active");
 
-  deleteElements();
-  generatePage(id);
+  getFilters();
 }
 
-function generatePage(filterPhase) {
+function activateFilterCategory(id) {
+  document.getElementById("AllCategory").classList.remove("active");
+  document.getElementById("diatomic nonmetal").classList.remove("active");
+  document.getElementById("noble gas").classList.remove("active");
+  document.getElementById("alkali metal").classList.remove("active");
+  document.getElementById("alkaline earth metal").classList.remove("active");
+  document.getElementById("metalloid").classList.remove("active");
+  document.getElementById("polyatomic nonmetal").classList.remove("active");
+  document.getElementById("post-transition metal").classList.remove("active");
+  document.getElementById("transition metal").classList.remove("active");
+  document.getElementById("lanthanide").classList.remove("active");
+  document.getElementById("actinide").classList.remove("active");
+  document.getElementById(id).classList.add("active");
+
+  getFilters();
+}
+
+function getFilters() {
+  var phase;
+  var category;
+
+  if (document.getElementById("AllPhase").classList.contains("active")) {
+    phase = "All";
+  } else if (document.getElementById("Solid").classList.contains("active")) {
+    phase = "Solid";
+  } else if (document.getElementById("Liquid").classList.contains("active")) {
+    phase = "Liquid"
+  } else if (document.getElementById("Gas").classList.contains("active")) {
+    phase = "Gas"
+  }
+
+  if (document.getElementById("AllCategory").classList.contains("active")) {
+    category = "All";
+  } else if (document.getElementById("diatomic nonmetal").classList.contains("active")) {
+    category = "diatomic nonmetal";
+  } else if (document.getElementById("noble gas").classList.contains("active")) {
+    category = "noble gas";
+  } else if (document.getElementById("alkali metal").classList.contains("active")) {
+    category = "alkali metal";
+  } else if (document.getElementById("alkaline earth metal").classList.contains("active")) {
+    category = "alkaline earth metal";
+  } else if (document.getElementById("metalloid").classList.contains("active")) {
+    category = "metalloid";
+  } else if (document.getElementById("polyatomic nonmetal").classList.contains("active")) {
+    category = "polyatomic nonmetal";
+  } else if (document.getElementById("post-transition metal").classList.contains("active")) {
+    category = "post-transition metal";
+  } else if (document.getElementById("transition metal").classList.contains("active")) {
+    category = "transition metal";
+  } else if (document.getElementById("lanthanide").classList.contains("active")) {
+    category = "lanthanide";
+  } else if (document.getElementById("actinide").classList.contains("active")) {
+    category = "actinide";
+  }
+
+  deleteElements();
+  generatePage(phase, category);
+}
+
+function generatePage(filterPhase, filterCategory) {
   // Hacer una llamada a la API utilizando fetch
   fetch(apiUrl)
   .then((response) => response.json())
@@ -102,8 +160,7 @@ function generatePage(filterPhase) {
       elementDiv.appendChild(elementInfo);
       elementDiv.appendChild(elementWiki);
 
-      if (element.phase == filterPhase || filterPhase == "All") {
-        console.log(filterPhase);
+      if ((element.phase == filterPhase || filterPhase == "All") && (element.category == filterCategory || filterCategory == "All")) {
         // Agregar el elemento <div> a la sección de elementos
         elementsSection.appendChild(elementDiv);
       }
