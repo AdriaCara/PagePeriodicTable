@@ -27,6 +27,7 @@ function activateFilterCategory(id) {
   document.getElementById("transition metal").classList.remove("active");
   document.getElementById("lanthanide").classList.remove("active");
   document.getElementById("actinide").classList.remove("active");
+  document.getElementById("unknown").classList.remove("active");
   document.getElementById(id).classList.add("active");
 
   getFilters();
@@ -68,6 +69,8 @@ function getFilters() {
     category = "lanthanide";
   } else if (document.getElementById("actinide").classList.contains("active")) {
     category = "actinide";
+  } else if (document.getElementById("unknown").classList.contains("active")) {
+    category = "unknown";
   }
 
   deleteElements();
