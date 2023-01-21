@@ -115,7 +115,7 @@ function generatePage(filterPhase, filterCategory) {
       if (element.phase=="Gas") { 
         elementDiv.style.color = "#f44";
       } else if (element.phase=="Liquid") { 
-        elementDiv.style.color = "##99f";
+        elementDiv.style.color = "#99f";
       } else if (element.phase=="Solid") { 
         elementDiv.style.color = "#b5b5b5";
       }
