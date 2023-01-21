@@ -85,8 +85,8 @@ function generatePage(filterPhase, filterCategory) {
       const elementDiv = document.createElement("div");
       elementDiv.classList.add("element");
       elementDiv.classList.add("card");
-      elementDiv.classList.add("ms-5");
-      elementDiv.classList.add("mb-5");
+      elementDiv.classList.add("m-3");
+      elementDiv.classList.add("mb-0");
       elementDiv.style.width = "18rem";
       elementDiv.style.background = "#4DA4EA";
       if (element.category=="diatomic nonmetal") { 
