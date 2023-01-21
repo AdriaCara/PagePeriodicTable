@@ -88,6 +88,7 @@ function generatePage(filterPhase, filterCategory) {
       elementDiv.classList.add("m-3");
       elementDiv.classList.add("mb-0");
       elementDiv.style.width = "18rem";
+      elementDiv.style.borderRadius = "2rem";
       elementDiv.style.background = "#4DA4EA";
       if (element.category=="diatomic nonmetal") { 
         elementDiv.style.background = "#015146";
