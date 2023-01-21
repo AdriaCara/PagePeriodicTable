@@ -85,9 +85,10 @@ function generatePage(filterPhase, filterCategory) {
       const elementDiv = document.createElement("div");
       elementDiv.classList.add("element");
       elementDiv.classList.add("card");
-      elementDiv.classList.add("ms-5");
-      elementDiv.classList.add("mb-5");
+      elementDiv.classList.add("m-3");
+      elementDiv.classList.add("mb-0");
       elementDiv.style.width = "18rem";
+      elementDiv.style.borderRadius = "2rem";
       elementDiv.style.background = "#4DA4EA";
       if (element.category=="diatomic nonmetal") { 
         elementDiv.style.background = "#015146";
@@ -115,7 +116,7 @@ function generatePage(filterPhase, filterCategory) {
       if (element.phase=="Gas") { 
         elementDiv.style.color = "#f44";
       } else if (element.phase=="Liquid") { 
-        elementDiv.style.color = "##99f";
+        elementDiv.style.color = "#99f";
       } else if (element.phase=="Solid") { 
         elementDiv.style.color = "#b5b5b5";
       }
